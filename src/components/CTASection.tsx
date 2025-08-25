@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowRight, CheckCircle, Users, Award, TrendingUp } from 'lucide-react';
 
 const CTASection = () => {

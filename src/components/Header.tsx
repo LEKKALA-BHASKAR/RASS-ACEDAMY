@@ -14,10 +14,13 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-blue-600">
-              RAAS ACADEMY
-            </h1>
-          </div>
+  <img 
+    src="/logo.webp" 
+    alt="RAAS ACADEMY Logo" 
+    className="h-16 w-29"
+  />
+</div>
+
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -37,26 +40,26 @@ const Header = () => {
               
               {isCoursesOpen && (
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                  <a href="#web-development" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                  <a href="/web-development" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Web Development
                   </a>
-                  <a href="#data-science" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                  <a href="/data-science" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Data Science
                   </a>
-                  <a href="#digital-marketing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                  <a href="/digital-marketing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Digital Marketing
                   </a>
-                  <a href="#cloud-computing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                  <a href="/cloud-computing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     Cloud Computing
                   </a>
                 </div>
               )}
             </div>
 
-            <a href="#corporate" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+            <a href="/corporate" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
               Corporate
             </a>
-            <a href="#hire" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+            <a href="/hire" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
               Hire from Us
             </a>
           </nav>
