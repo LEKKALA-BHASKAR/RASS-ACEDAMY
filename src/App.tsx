@@ -1,6 +1,4 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import PartnersSlider from './components/PartnersSlider';
@@ -9,9 +7,14 @@ import ContentSection from './components/ContentSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import Preloader from "./pages/Preloader";
 
-import WebDevelopmentPage from './pages/webdevelopment';
-import DataSciencePage from './pages/data-science';
+import { useEffect, useState } from "react";
+import CoursesPage from "./pages/CoursesPage";
+import About from "./pages/About";
+import Corporate from "./pages/corporate";
+import NotFoundPage from "./pages/404";
+
 
 function HomePage() {
   return (
@@ -20,7 +23,7 @@ function HomePage() {
       <main>
         <HeroSection />
         <PartnersSlider />
-        <CoursesSection />
+        <CoursesPage />
         <ContentSection />
         <TestimonialsSection />
         <CTASection />
@@ -31,12 +34,25 @@ function HomePage() {
 }
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/web-development" element={<WebDevelopmentPage />} />
-        <Route path="/data-science" element={<DataSciencePage />} />
+       <Route path="/courses" element={<CoursesSection />} />
+       <Route path="/about" element={<About />} />
+       <Route path="/corporate" element={<Corporate />} />
+       <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

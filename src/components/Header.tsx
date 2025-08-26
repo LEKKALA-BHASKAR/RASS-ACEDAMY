@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import  { useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,71 +14,65 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-  <img 
-    src="/logo.webp" 
-    alt="RAAS ACADEMY Logo" 
-    className="h-16 w-29"
-  />
-</div>
-
+            <a href="/">
+              <img
+                src="/logo.webp"
+                alt="RAAS ACADEMY Logo"
+                className="h-14 w-auto"
+              />
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+          <nav className="hidden md:flex items-center space-x-8">
+            <a
+              href="/"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+            >
               Home
             </a>
-            
-            {/* Courses Dropdown */}
-            <div className="relative">
-              <button 
-                onClick={toggleCourses}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium flex items-center space-x-1"
-              >
-                <span>Courses</span>
-                <ChevronDown className="h-4 w-4" />
-              </button>
-              
-              {isCoursesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                  <a href="/web-development" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Web Development
-                  </a>
-                  <a href="/data-science" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Data Science
-                  </a>
-                  <a href="/digital-marketing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Digital Marketing
-                  </a>
-                  <a href="/cloud-computing" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    Cloud Computing
-                  </a>
-                </div>
-              )}
-            </div>
+<a
+              href="/Courses"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
+              Courses
+            </a>
 
-            <a href="/corporate" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+            <a
+              href="/corporate"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
               Corporate
             </a>
-            <a href="/hire" className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+            <a
+              href="/about"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
+              About Us
+            </a>
+            <a
+              href="/hire"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
               Hire from Us
             </a>
           </nav>
 
-          {/* Login/Signup Buttons - Desktop */}
+          {/* Login/Signup Buttons (Desktop) */}
           <div className="hidden md:flex space-x-4">
-            <button className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200">
+            <button className="text-blue-600 hover:text-blue-700 font-medium">
               Login
             </button>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium">
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-medium transition">
               Sign Up
             </button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+              className="text-gray-700 hover:text-blue-600"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -87,28 +81,56 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50 rounded-lg mt-2">
-              <a href="#home" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">
-                Home
-              </a>
-              <a href="#courses" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">
-                Courses
-              </a>
-              <a href="#corporate" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">
-                Corporate
-              </a>
-              <a href="#hire" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">
-                Hire from Us
-              </a>
-              <div className="flex space-x-4 px-3 py-2">
-                <button className="text-blue-600 hover:text-blue-700 font-medium">
-                  Login
-                </button>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium">
-                  Sign Up
-                </button>
-              </div>
+          <div className="md:hidden bg-gray-50 rounded-lg mt-2 p-4 space-y-3">
+            <a href="/" className="block text-gray-700 hover:text-blue-600">
+              Home
+            </a>
+
+            {/* Expandable Courses on Mobile */}
+            <div>
+              <button
+                onClick={toggleCourses}
+                className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600"
+              >
+                Courses <ChevronDown className="h-4 w-4" />
+              </button>
+              {isCoursesOpen && (
+                <div className="mt-2 pl-3 space-y-2">
+                  {[
+                    "Web Development",
+                    "Data Science",
+                    "Digital Marketing",
+                    "Cloud Computing",
+                    "Cyber Security",
+                    "AI & Machine Learning",
+                    "Blockchain",
+                    "DevOps",
+                  ].map((course, i) => (
+                    <a
+                      key={i}
+                      href={`/${course.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="block text-sm text-gray-700 hover:text-blue-600"
+                    >
+                      {course}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <a href="/corporate" className="block text-gray-700 hover:text-blue-600">
+              Corporate
+            </a>
+            <a href="/hire" className="block text-gray-700 hover:text-blue-600">
+              Hire from Us
+            </a>
+
+            {/* Buttons */}
+            <div className="flex space-x-4 pt-3">
+              <button className="text-blue-600 font-medium">Login</button>
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+                Sign Up
+              </button>
             </div>
           </div>
         )}
