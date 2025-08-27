@@ -62,7 +62,7 @@ const Footer = () => {
               ].map((link) => (
                 <li key={link}>
                   <a 
-                    href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group"
                   >
                     <ArrowRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
@@ -88,7 +88,7 @@ const Footer = () => {
               ].map((course) => (
                 <li key={course}>
                   <a 
-                    href={`#${course.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={`/${course.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group"
                   >
                     <ArrowRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />

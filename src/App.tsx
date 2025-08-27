@@ -14,6 +14,11 @@ import CoursesPage from "./pages/CoursesPage";
 import About from "./pages/About";
 import Corporate from "./pages/corporate";
 import NotFoundPage from "./pages/404";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import TestimonialForm from "./pages/Testimonial";
+import HelpCenter from "./pages/help-center";
+import ContactUs from "./pages/ContactUs";
 
 
 function HomePage() {
@@ -53,6 +58,15 @@ function App() {
        <Route path="/about" element={<About />} />
        <Route path="/corporate" element={<Corporate />} />
        <Route path="*" element={<NotFoundPage />} />
+       <Route path="/login" element={<LoginPage />} />
+       <Route path="/register" element={<RegisterPage />} />
+       <Route path="/testimonialform" element={<TestimonialForm onClose={function (): void {
+          throw new Error("Function not implemented.");
+        } } onSubmit={function (): void {
+          throw new Error("Function not implemented.");
+        } } />} />
+        <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
     </Router>
   );

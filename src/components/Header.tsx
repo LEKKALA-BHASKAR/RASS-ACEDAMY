@@ -1,13 +1,13 @@
 import  { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Link } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCoursesOpen, setIsCoursesOpen] = useState(false);
-
+  const navigate = useNavigate();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleCourses = () => setIsCoursesOpen(!isCoursesOpen);
-
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,19 +51,21 @@ const Header = () => {
               About Us
             </a>
             <a
-              href="/hire"
+              href="/contact-us"
               className="text-gray-700 hover:text-blue-600 font-medium"
             >
-              Hire from Us
+              Contact Us
             </a>
           </nav>
 
           {/* Login/Signup Buttons (Desktop) */}
           <div className="hidden md:flex space-x-4">
-            <button className="text-blue-600 hover:text-blue-700 font-medium">
+            <button className="text-blue-600 hover:text-blue-700 font-medium"
+            onClick={() => navigate(`/login`)}>
               Login
             </button>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-medium transition">
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-medium transition"
+            onClick={() => navigate(`/register`)}>
               Sign Up
             </button>
           </div>

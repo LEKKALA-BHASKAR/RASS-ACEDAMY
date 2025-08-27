@@ -237,22 +237,6 @@ const CoursesPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Newsletter Section */}
-      <div className="max-w-3xl mx-auto mt-16 p-8 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Stay Updated with New Courses</h2>
-        <p className="text-gray-600 mb-6">Subscribe to our newsletter to get notified about new courses and updates</p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <input 
-            type="email" 
-            placeholder="Enter your email" 
-            className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-blue-500/30">
-            Subscribe
-          </button>
-        </div>
-      </div>
     </div>
   );
 };

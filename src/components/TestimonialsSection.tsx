@@ -1,11 +1,11 @@
 import  { useState } from 'react';
-import { Star, Quote, ChevronLeft, ChevronRight, IndianRupee } from 'lucide-react';
-
+import { Star, Quote, ChevronLeft, ChevronRight, IndianRupee, Home, MailCheck } from 'lucide-react';
+import { Navigation, useNavigate } from 'react-router-dom';
 import testimonials from '../data/testimonials';
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const navigate = useNavigate();
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
@@ -143,6 +143,14 @@ const TestimonialsSection = () => {
           </div>
         </div>
       </div>
+       <button
+            onClick={() => navigate('/testimonialform')}
+            className="group bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-0 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center mt-10 mx-auto"
+          >
+            <MailCheck className="h-5 w-5 mr-2" />
+            Post Your Testimonial
+            <ChevronRight className="h-5 w-5 ml-1 " />
+          </button>
     </section>
   );
 };
