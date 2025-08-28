@@ -19,8 +19,13 @@ import RegisterPage from "./pages/RegisterPage";
 import TestimonialForm from "./pages/Testimonial";
 import HelpCenter from "./pages/help-center";
 import ContactUs from "./pages/ContactUs";
-
-
+import Blog from "./pages/blog";
+import OurStory from "./pages/our-story";
+import FullStackDevelopment from "./Courses/full-stack-development";
+import DataScienceMLPage from "./Courses/data-science-&-ml";
+import DigitalMarketing from "./Courses/DigitalMarketing";
+import CloudComputing from "./Courses/cloud-computing";
+import UIDesignToolsPage from "./Courses/uiux-design";
 function HomePage() {
   return (
     <div className="min-h-screen bg-white">
@@ -53,7 +58,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+       <Route path="/" element={<HomePage />} />
        <Route path="/courses" element={<CoursesSection />} />
        <Route path="/about" element={<About />} />
        <Route path="/corporate" element={<Corporate />} />
@@ -67,9 +72,16 @@ function App() {
         } } />} />
         <Route path="/help-center" element={<HelpCenter />} />
         <Route path="/contact-us" element={<ContactUs />} />
-      </Routes>
-    </Router>
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/our-story' element={<OurStory />} />
+        <Route path='/full-stack-development' element={<FullStackDevelopment />} />
+        <Route path='/data-science-&-ml' element={<DataScienceMLPage />} />
+        <Route path='/digital-marketing' element={<DigitalMarketing />} />
+        <Route path='/cloud-computing' element={<CloudComputing />} />
+        <Route path='/ui/ux-design' element={<UIDesignToolsPage />} />
+
+        </Routes>
+        </Router>
   );
 }
-
 export default App;
