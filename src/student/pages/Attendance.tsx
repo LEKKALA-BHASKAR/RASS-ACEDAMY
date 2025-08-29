@@ -206,7 +206,7 @@ const Attendance: React.FC = () => {
               <option value="all">All Courses</option>
               {courses.map((course) => (
                 <option key={course.id} value={course.id}>
-                  {course.name}
+                  {course.title}
                 </option>
               ))}
             </select>
