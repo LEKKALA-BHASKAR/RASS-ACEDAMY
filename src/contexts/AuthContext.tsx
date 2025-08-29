@@ -26,7 +26,33 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   });
 
   useEffect(() => {
-    // Load auth state from localStorage on app start
+    // Initialize with demo users if not exists
+    const users = localStorage.getItem('users');
+    if (!users) {
+      const demoUsers = [
+        {
+          id: 'student1',
+          email: 'student@demo.com',
+          password: 'password123',
+          fullName: 'John Doe',
+          phone: '9876543210',
+          role: 'student',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 'admin1',
+          email: 'admin@demo.com',
+          password: 'admin123',
+          fullName: 'Admin User',
+          phone: '9876543211',
+          role: 'admin',
+          createdAt: new Date().toISOString()
+        }
+      ];
+      localStorage.setItem('users', JSON.stringify(demoUsers));
+    }
+
+    // Load auth state from localStorage
     const savedAuth = localStorage.getItem('auth');
     if (savedAuth) {
       try {
@@ -46,7 +72,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const login = async (credentials: LoginCredentials): Promise<boolean> => {
     try {
-      // Get users from localStorage
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       const user = users.find((u: User) => 
         u.email === credentials.email && u.password === credentials.password
@@ -71,15 +96,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const register = async (data: RegisterData): Promise<boolean> => {
     try {
-      // Get existing users
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       
-      // Check if user already exists
       if (users.find((u: User) => u.email === data.email)) {
         return false;
       }
 
-      // Create new user
       const newUser: User = {
         id: `user_${Date.now()}`,
         ...data,
@@ -87,11 +109,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         createdAt: new Date().toISOString()
       };
 
-      // Save to localStorage
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
 
-      // Auto login after registration
       const token = `token_${newUser.id}_${Date.now()}`;
       const newAuthState = {
         user: newUser,
@@ -124,7 +144,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       };
       saveAuthState(newAuthState);
 
-      // Update in users array
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       const userIndex = users.findIndex((u: User) => u.id === updatedUser.id);
       if (userIndex !== -1) {

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, LogIn, GraduationCap } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, UserPlus, GraduationCap } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
-const LoginPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
+    fullName: '',
     email: '',
+    phone: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -26,19 +28,14 @@ const LoginPage: React.FC = () => {
     setError('');
 
     try {
-      const success = await login(formData);
+      const success = await register(formData);
       if (success) {
-        const authData = JSON.parse(localStorage.getItem('auth') || '{}');
-        if (authData.user?.role === 'admin') {
-          navigate('/admin/dashboard');
-        } else {
-          navigate('/student/dashboard');
-        }
+        navigate('/student/dashboard');
       } else {
-        setError('Invalid email or password');
+        setError('Email already exists or registration failed');
       }
     } catch (err) {
-      setError('Login failed. Please try again.');
+      setError('Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -51,8 +48,8 @@ const LoginPage: React.FC = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-lg mb-4">
             <GraduationCap className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your RAAS Academy account</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Join RAAS Academy</h1>
+          <p className="text-gray-600">Create your account to start learning</p>
         </div>
 
         <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-8">
@@ -62,6 +59,25 @@ const LoginPage: React.FC = () => {
                 {error}
               </div>
             )}
+
+            <div>
+              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                Full Name
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  required
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                  placeholder="Enter your full name"
+                />
+              </div>
+            </div>
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -83,6 +99,25 @@ const LoginPage: React.FC = () => {
             </div>
 
             <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                Phone Number
+              </label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+            </div>
+
+            <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                 Password
               </label>
@@ -96,7 +131,7 @@ const LoginPage: React.FC = () => {
                   value={formData.password}
                   onChange={handleInputChange}
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
-                  placeholder="Enter your password"
+                  placeholder="Create a password"
                 />
                 <button
                   type="button"
@@ -117,8 +152,8 @@ const LoginPage: React.FC = () => {
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
               ) : (
                 <>
-                  <LogIn className="h-5 w-5 mr-2" />
-                  Sign In
+                  <UserPlus className="h-5 w-5 mr-2" />
+                  Create Account
                 </>
               )}
             </button>
@@ -126,19 +161,11 @@ const LoginPage: React.FC = () => {
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Don't have an account?{' '}
-              <Link to="/auth/register" className="text-blue-600 hover:text-blue-700 font-medium">
-                Sign up here
+              Already have an account?{' '}
+              <Link to="/auth/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                Sign in here
               </Link>
             </p>
-          </div>
-
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</p>
-            <div className="text-xs text-gray-600 space-y-1">
-              <p><strong>Student:</strong> student@demo.com / password123</p>
-              <p><strong>Admin:</strong> admin@demo.com / admin123</p>
-            </div>
           </div>
         </div>
       </div>
@@ -146,4 +173,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
