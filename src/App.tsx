@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Public pages
+import IntroPage from './pages/IntroPage';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import PartnersSlider from './components/PartnersSlider';
@@ -74,7 +75,8 @@ function App() {
       <Router>
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/courses" element={<CoursesSection />} />
           <Route path="/about" element={<About />} />
           <Route path="/corporate" element={<Corporate />} />
@@ -99,6 +101,7 @@ function App() {
               <StudentLayout />
             </ProtectedRoute>
           }>
+            <Route index element={<Navigate to="/student/dashboard" replace />} />
             <Route path="dashboard" element={<StudentDashboard />} />
             <Route path="courses" element={<StudentCourses />} />
             <Route path="assignments" element={<StudentAssignments />} />

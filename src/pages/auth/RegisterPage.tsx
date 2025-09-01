@@ -30,7 +30,7 @@ const RegisterPage: React.FC = () => {
     try {
       const success = await register(formData);
       if (success) {
-        navigate('/student/dashboard');
+        navigate('/student');
       } else {
         setError('Email already exists or registration failed');
       }

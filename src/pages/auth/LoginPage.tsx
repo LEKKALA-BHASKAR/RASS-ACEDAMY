@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
         if (authData.user?.role === 'admin') {
           navigate('/admin/dashboard');
         } else {
-          navigate('/student/dashboard');
+          navigate('/student');
         }
       } else {
         setError('Invalid email or password');
